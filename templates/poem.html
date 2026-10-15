@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The template for a poem. Copy it to /poetry/<slug>/index.html, change the title, description, date and
+         lines, delete the robots line below, and add the poem to the top of the list in /poetry/index.html. -->
+    <title>The poem’s title · funklunsford</title>
+    <meta name="description" content="The poem's first line." />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#f5efe3" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1c1e18" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&amp;display=swap" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="/">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21 C 7.5 15.5, 11.5 10.5, 19 4"/><path d="M8.9 14.5 C 5.9 14.1, 3.9 11.5, 3.7 8.1 C 6.9 8.7, 8.9 11.3, 8.9 14.5 Z" fill="currentColor" fill-opacity="0.25"/><path d="M11.6 11.2 C 13.6 9.2, 16.6 8.8, 19.6 10.4 C 17.4 12.6, 14.4 12.8, 11.6 11.2 Z" fill="currentColor" fill-opacity="0.25"/></svg>
+        funklunsford
+      </a>
+      <nav class="site-nav" aria-label="Sections">
+        <a href="/blog/">Blog</a>
+        <a href="/puzzles/">Puzzles</a>
+        <a href="/poetry/" aria-current="page">Poetry</a>
+      </nav>
+    </header>
+
+    <main>
+      <article class="poem-page">
+        <h1>The poem’s title</h1>
+
+        <!-- Each <p> is a stanza. Start its first line right after <p>, then write every line on a line of its own:
+             the breaks are kept exactly, and the indenting in this file is ignored. -->
+        <div class="poem">
+          <p>This is the template for a poem.
+            Each line goes on a line of its own,
+            just as you would write it down,
+            and the page keeps every break.</p>
+          <p>A new paragraph
+            starts a new stanza.</p>
+        </div>
+
+        <time class="post-date" datetime="2026-10-15">October 15, 2026</time>
+
+        <p class="back"><a href="/poetry/">← All poems</a></p>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 funklunsford</p>
+    </footer>
+  </body>
+</html>
