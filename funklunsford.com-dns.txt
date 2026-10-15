@@ -1,0 +1,15 @@
+;; DNS records for funklunsford.com, served by GitHub Pages (this repo).
+;; Import in Cloudflare: funklunsford.com > DNS > Records > Import and Export > Import.
+;; Leave "Proxy imported DNS records" unticked: each record is DNS only (grey cloud), so GitHub can issue
+;; the HTTPS certificate. cf_tags=cf-proxied:false says so to Cloudflare as well.
+$ORIGIN funklunsford.com.
+$TTL 3600
+funklunsford.com.	3600	IN	A	185.199.108.153 ; cf_tags=cf-proxied:false
+funklunsford.com.	3600	IN	A	185.199.109.153 ; cf_tags=cf-proxied:false
+funklunsford.com.	3600	IN	A	185.199.110.153 ; cf_tags=cf-proxied:false
+funklunsford.com.	3600	IN	A	185.199.111.153 ; cf_tags=cf-proxied:false
+funklunsford.com.	3600	IN	AAAA	2606:50c0:8000::153 ; cf_tags=cf-proxied:false
+funklunsford.com.	3600	IN	AAAA	2606:50c0:8001::153 ; cf_tags=cf-proxied:false
+funklunsford.com.	3600	IN	AAAA	2606:50c0:8002::153 ; cf_tags=cf-proxied:false
+funklunsford.com.	3600	IN	AAAA	2606:50c0:8003::153 ; cf_tags=cf-proxied:false
+www.funklunsford.com.	3600	IN	CNAME	funklunsford.github.io. ; cf_tags=cf-proxied:false

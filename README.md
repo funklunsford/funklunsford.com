@@ -18,6 +18,9 @@ Mountweazel stay at their github.io addresses.
 
 ## DNS (Cloudflare, all **DNS only**, not proxied)
 
+`funklunsford.com-dns.txt` holds these as a zone file, to import in Cloudflare (DNS > Records > Import and Export),
+with "Proxy imported DNS records" left unticked.
+
 | Type | Name | Content |
 |---|---|---|
 | A | @ | 185.199.108.153 |
