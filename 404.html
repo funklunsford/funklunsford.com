@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Not found</title>
+    <meta name="robots" content="noindex" />
+    <!-- A deeper address under a short link forwards too, with the rest of its path, search and hash:
+         funklunsford.com/puzzleplaylist/index.html#add=… goes to the playlist's own page. -->
+    <script>
+      (function () {
+        var routes = {
+          strokes: 'https://strokes.fun/',
+          mountweazel: 'https://funklunsford.github.io/mountweazel/',
+          puzzleplaylist: 'https://funklunsford.github.io/playlist/',
+          playlist: 'https://funklunsford.github.io/playlist/'
+        };
+        var parts = location.pathname.split('/');
+        var to = routes[(parts[1] || '').toLowerCase()];
+        if (to) location.replace(to + parts.slice(2).join('/') + location.search + location.hash);
+      })();
+    </script>
+    <style>
+      :root { color-scheme: light dark; }
+      body { margin: 0; min-height: 100dvh; display: grid; place-content: center; text-align: center; font: 17px/1.4 -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+      a { color: #00766f; }
+      @media (prefers-color-scheme: dark) { a { color: #63e6e2; } }
+    </style>
+  </head>
+  <body>
+    <p>Nothing here. <a href="/">Back to funklunsford.com</a></p>
+  </body>
+</html>

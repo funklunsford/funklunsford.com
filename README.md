@@ -1,0 +1,31 @@
+# funklunsford.com
+
+The owner's own domain, served by GitHub Pages from this repo (`main`, at its root; `CNAME` names the domain).
+
+- **/** — a page linking the three.
+- **/strokes** forwards to https://strokes.fun/.
+- **/mountweazel** forwards to https://funklunsford.github.io/mountweazel/.
+- **/puzzleplaylist** forwards to https://funklunsford.github.io/playlist/ (the Puzzle Playlist's home; there's no strokes.fun/playlist).
+
+Each forward uses `location.replace`, so it doesn't stay in the browser's history (Back from a game returns to the
+playlist, not here), and it keeps the address's `?search` and `#hash`, so a playlist link like
+`funklunsford.com/puzzleplaylist#add=…` still adds its puzzles. `404.html` forwards deeper addresses under each short
+link the same way (and `/playlist` as `/puzzleplaylist`).
+
+This is an ordinary project repo with its own custom domain, not the account's user site
+(`funklunsford.github.io`). A domain on the user site would move every project site under it, and the playlist and
+Mountweazel stay at their github.io addresses.
+
+## DNS (Cloudflare, all **DNS only**, not proxied)
+
+| Type | Name | Content |
+|---|---|---|
+| A | @ | 185.199.108.153 |
+| A | @ | 185.199.109.153 |
+| A | @ | 185.199.110.153 |
+| A | @ | 185.199.111.153 |
+| AAAA | @ | 2606:50c0:8000::153 |
+| AAAA | @ | 2606:50c0:8001::153 |
+| AAAA | @ | 2606:50c0:8002::153 |
+| AAAA | @ | 2606:50c0:8003::153 |
+| CNAME | www | funklunsford.github.io |
