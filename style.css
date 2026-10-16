@@ -115,13 +115,14 @@ a { color: var(--moss); }
   padding: 1.25rem 0 0.5rem;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.25rem 1.5rem;
 }
 
 .wordmark {
   display: inline-flex;
+  padding-top: 0.2rem;
   align-items: center;
   gap: 0.4rem;
   color: var(--ink);
@@ -135,23 +136,28 @@ a { color: var(--moss); }
 
 .wordmark svg { width: 1.5rem; height: 1.5rem; color: var(--moss); flex: none; }
 
-.site-nav { display: flex; gap: 0.25rem 1.25rem; }
+.site-nav { display: flex; gap: 0.25rem 1.6rem; }
 
 .site-nav a {
-  position: relative;
-  padding: 0.35rem 0.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.1rem 0.25rem;
   color: var(--ink-soft);
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.site-nav a::after {
+.site-nav span { position: relative; line-height: 1.2; }
+
+.site-nav span::after {
   content: "";
   position: absolute;
   left: -0.15rem;
   right: -0.15rem;
-  bottom: 0;
-  height: 0.5rem;
+  bottom: -0.4rem;
+  height: 0.45rem;
   background: var(--moss);
   -webkit-mask: var(--squiggle) center / 100% 100% no-repeat;
   mask: var(--squiggle) center / 100% 100% no-repeat;
@@ -161,10 +167,22 @@ a { color: var(--moss); }
   transition: opacity 0.25s, transform 0.4s cubic-bezier(0.3, 0.7, 0.2, 1);
 }
 
+.site-nav svg {
+  width: 2rem;
+  height: 2rem;
+  color: var(--tint);
+  transition: transform 0.45s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+.nav--substack { --tint: var(--ochre); }
+.nav--puzzles { --tint: var(--moss); }
+.nav--poetry { --tint: var(--clay); }
+
 .site-nav a:hover { color: var(--ink); }
-.site-nav a:hover::after { opacity: 0.6; transform: none; }
+.site-nav a:hover span::after { opacity: 0.6; transform: none; }
+.site-nav a:hover svg { transform: rotate(-10deg) scale(1.08); }
 .site-nav a[aria-current="page"] { color: var(--ink); }
-.site-nav a[aria-current="page"]::after { opacity: 1; transform: none; background: var(--clay); }
+.site-nav a[aria-current="page"] span::after { opacity: 1; transform: none; background: var(--clay); }
 
 .site-footer {
   position: relative;
@@ -273,6 +291,25 @@ a { color: var(--moss); }
 .sprig .leaves { fill: var(--leaf); stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; }
 .sprig .stem { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; }
 .sprig .seeds { fill: var(--clay); }
+
+/* The seeds drift up past their spots and fade, each on its own clock. With reduced motion they rest at their spots. */
+.sprig .seeds circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: drift var(--time) ease-in-out var(--delay) infinite;
+}
+
+.sprig .seeds circle:nth-child(1) { --time: 7s; --delay: -1.5s; --dx: 7px; }
+.sprig .seeds circle:nth-child(2) { --time: 8.5s; --delay: -5s; --dx: -6px; }
+.sprig .seeds circle:nth-child(3) { --time: 7.8s; --delay: -3.2s; --dx: 5px; }
+
+@keyframes drift {
+  0% { opacity: 0; transform: translate(0, 38px) scale(0.5); }
+  25% { opacity: 1; }
+  50% { transform: translate(var(--dx), 0) scale(1); }
+  75% { opacity: 0.8; }
+  100% { opacity: 0; transform: translate(calc(var(--dx) * -0.6), -34px) scale(0.7); }
+}
 .sprig .leaves use:nth-child(1) { fill: var(--rainbow-1); }
 .sprig .leaves use:nth-child(2) { fill: var(--rainbow-2); }
 .sprig .leaves use:nth-child(3) { fill: var(--rainbow-3); }
@@ -302,49 +339,6 @@ a { color: var(--moss); }
 .about h2 { margin: 0 0 0.9rem; font-size: clamp(1.65rem, 1.3rem + 1.3vw, 2.2rem); }
 
 .about p { margin: 0 0 1rem; }
-
-.doors {
-  width: min(100% - 2rem, var(--wide));
-  margin: clamp(3.5rem, 9vw, 6rem) auto 0;
-}
-
-.doors ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15.5rem), 1fr));
-  gap: 1.5rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.door {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  height: 100%;
-  padding: 1.4rem 1.5rem 1.35rem;
-  background: var(--wash);
-  border-radius: var(--shape);
-  box-shadow: var(--shadow);
-  color: var(--ink);
-  text-decoration: none;
-  rotate: var(--tilt);
-  transition: rotate 0.45s cubic-bezier(0.3, 0.7, 0.2, 1), translate 0.45s cubic-bezier(0.3, 0.7, 0.2, 1);
-}
-
-.door--substack { --wash: var(--ochre-wash); --tint: var(--ochre); --shape: 34px 52px 30px 46px / 44px 30px 50px 34px; --tilt: -1.2deg; }
-.door--puzzles { --wash: var(--moss-wash); --tint: var(--moss); --shape: 50px 30px 48px 34px / 32px 48px 30px 50px; --tilt: 0.9deg; }
-.door--poetry { --wash: var(--clay-wash); --tint: var(--clay); --shape: 30px 46px 36px 54px / 50px 34px 46px 30px; --tilt: -0.6deg; }
-
-.door svg { width: 3rem; height: 3rem; margin-bottom: 0.5rem; color: var(--tint); }
-.door-title { font-size: 1.6rem; font-weight: 540; line-height: 1.15; font-variation-settings: "SOFT" 100, "WONK" 1; }
-.door-note { color: var(--ink-soft); }
-.door-go { margin-top: auto; padding-top: 0.9rem; color: var(--tint); font-style: italic; }
-.door:focus-visible { outline-color: var(--tint); outline-offset: 5px; border-radius: var(--shape); }
-
-@media (hover: hover) {
-  .door:hover { rotate: 0deg; translate: 0 -4px; }
-}
 
 /* ---- Section pages ---- */
 
