@@ -15,7 +15,8 @@ link the same way (and `/playlist` as `/puzzleplaylist`).
 
 ## The pages
 
-Plain HTML, no build step: every page links `/style.css` (warm paper and earth tones, the Fraunces font from Google
+Plain HTML, no build step: every page links `/style.css?v=N` (bump N on every page whenever the stylesheet changes, so
+browsers holding the old one in cache fetch the new one with the new pages) (warm paper and earth tones, the Fraunces font from Google
 Fonts, hand-drawn lines and loose shapes) and repeats the same header. Light and dark follow the device.
 
 - **A post** lives at `substack/<slug>/index.html`. Copy `templates/post.html` there, change the title, description,
