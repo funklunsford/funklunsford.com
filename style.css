@@ -86,7 +86,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-main { flex: 1; }
+main { flex: 1; padding-bottom: clamp(3rem, 8vw, 5rem); }
 
 h1, h2, h3 {
   font-weight: 540;
@@ -107,7 +107,7 @@ a { color: var(--moss); }
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-/* ---- Header and footer ---- */
+/* ---- Header ---- */
 
 .site-header {
   width: min(100% - 2rem, var(--wide));
@@ -116,25 +116,9 @@ a { color: var(--moss); }
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 0.25rem 1.5rem;
 }
-
-.wordmark {
-  display: inline-flex;
-  padding-top: 0.2rem;
-  align-items: center;
-  gap: 0.4rem;
-  color: var(--ink);
-  text-decoration: none;
-  font-size: 1.3rem;
-  font-style: italic;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  font-variation-settings: "SOFT" 100, "WONK" 1;
-}
-
-.wordmark svg { width: 1.5rem; height: 1.5rem; color: var(--moss); flex: none; }
 
 .site-nav { display: flex; gap: 0.25rem 1.6rem; }
 
@@ -142,7 +126,7 @@ a { color: var(--moss); }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.4rem;
   padding: 0.35rem 0.1rem 0.25rem;
   color: var(--ink-soft);
   text-decoration: none;
@@ -168,8 +152,8 @@ a { color: var(--moss); }
 }
 
 .site-nav svg {
-  width: 2rem;
-  height: 2rem;
+  width: 1.35rem;
+  height: 1.35rem;
   color: var(--tint);
   transition: transform 0.45s cubic-bezier(0.3, 0.7, 0.2, 1);
 }
@@ -183,29 +167,6 @@ a { color: var(--moss); }
 .site-nav a:hover svg { transform: rotate(-10deg) scale(1.08); }
 .site-nav a[aria-current="page"] { color: var(--ink); }
 .site-nav a[aria-current="page"] span::after { opacity: 1; transform: none; background: var(--clay); }
-
-.site-footer {
-  position: relative;
-  width: min(100% - 2rem, var(--wide));
-  margin: clamp(4rem, 10vw, 7rem) auto 0;
-  padding: 1.5rem 0 2.25rem;
-  color: var(--ink-soft);
-  font-size: 0.95rem;
-}
-
-.site-footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 10px;
-  background: var(--line);
-  -webkit-mask: var(--rule) center / 100% 100% no-repeat;
-  mask: var(--rule) center / 100% 100% no-repeat;
-}
-
-.site-footer p { margin: 0; }
 
 /* ---- Home: the hello, the about, and the ways in ---- */
 
@@ -292,23 +253,39 @@ a { color: var(--moss); }
 .sprig .stem { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; }
 .sprig .seeds { fill: var(--clay); }
 
-/* The seeds drift up past their spots and fade, each on its own clock. With reduced motion they rest at their spots. */
+/* The seeds drift up past their spots and fade, each on its own clock. With reduced motion they rest at their spots.
+   Each has its own keyframes with plain numbers: Safari doesn't reliably animate var() inside @keyframes. */
 .sprig .seeds circle {
   transform-box: fill-box;
   transform-origin: center;
-  animation: drift var(--time) ease-in-out var(--delay) infinite;
 }
 
-.sprig .seeds circle:nth-child(1) { --time: 7s; --delay: -1.5s; --dx: 7px; }
-.sprig .seeds circle:nth-child(2) { --time: 8.5s; --delay: -5s; --dx: -6px; }
-.sprig .seeds circle:nth-child(3) { --time: 7.8s; --delay: -3.2s; --dx: 5px; }
+.sprig .seeds circle:nth-child(1) { animation: drift-1 7s ease-in-out -1.5s infinite; }
+.sprig .seeds circle:nth-child(2) { animation: drift-2 8.5s ease-in-out -5s infinite; }
+.sprig .seeds circle:nth-child(3) { animation: drift-3 7.8s ease-in-out -3.2s infinite; }
 
-@keyframes drift {
-  0% { opacity: 0; transform: translate(0, 38px) scale(0.5); }
+@keyframes drift-1 {
+  0% { opacity: 0; transform: translate(0, 44px) scale(0.5); }
   25% { opacity: 1; }
-  50% { transform: translate(var(--dx), 0) scale(1); }
+  50% { transform: translate(7px, 0) scale(1); }
   75% { opacity: 0.8; }
-  100% { opacity: 0; transform: translate(calc(var(--dx) * -0.6), -34px) scale(0.7); }
+  100% { opacity: 0; transform: translate(-4px, -40px) scale(0.7); }
+}
+
+@keyframes drift-2 {
+  0% { opacity: 0; transform: translate(0, 44px) scale(0.5); }
+  25% { opacity: 1; }
+  50% { transform: translate(-6px, 0) scale(1); }
+  75% { opacity: 0.8; }
+  100% { opacity: 0; transform: translate(4px, -40px) scale(0.7); }
+}
+
+@keyframes drift-3 {
+  0% { opacity: 0; transform: translate(0, 44px) scale(0.5); }
+  25% { opacity: 1; }
+  50% { transform: translate(5px, 0) scale(1); }
+  75% { opacity: 0.8; }
+  100% { opacity: 0; transform: translate(-3px, -40px) scale(0.7); }
 }
 .sprig .leaves use:nth-child(1) { fill: var(--rainbow-1); }
 .sprig .leaves use:nth-child(2) { fill: var(--rainbow-2); }
