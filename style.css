@@ -204,34 +204,12 @@ a { color: var(--moss); }
   letter-spacing: -0.03em;
 }
 
-/* The wave waves twice when the page opens, and again on hover. */
-.wave {
-  display: inline-block;
-  margin-left: 0.05em;
-  font-size: 0.85em;
-  transform-origin: 70% 85%;
-  animation: wave 2.2s ease-in-out 0.5s 2;
-}
-
-@media (hover: hover) {
-  .hero h1:hover .wave { animation: wave 2.2s ease-in-out infinite; }
-}
-
 /* The about blurb under the hello. */
 .blurb {
   max-width: 30rem;
   margin: 1.1rem 0 0;
   font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.3rem);
   line-height: 1.55;
-}
-
-@keyframes wave {
-  0%, 60%, 100% { transform: rotate(0deg); }
-  10% { transform: rotate(16deg); }
-  20% { transform: rotate(-8deg); }
-  30% { transform: rotate(14deg); }
-  40% { transform: rotate(-4deg); }
-  50% { transform: rotate(10deg); }
 }
 
 .hero-art {
