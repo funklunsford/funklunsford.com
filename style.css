@@ -1,0 +1,529 @@
+/* funklunsford.com: one stylesheet for every page.
+   Warm paper and earth tones, Fraunces (a soft, slightly wonky serif), loose shapes and hand-drawn lines. */
+
+:root {
+  color-scheme: light dark;
+  --paper: #f5efe3;
+  --card: #fbf8f1;
+  --ink: #2e2a22;
+  --ink-soft: #645b4c;
+  --line: rgb(46 42 34 / 0.2);
+  --moss: #4a6638;
+  --moss-wash: #dfe5cf;
+  --clay: #9a4529;
+  --clay-wash: #f1dccf;
+  --ochre: #7a5712;
+  --ochre-wash: #f1e3c2;
+  --leaf: #a9bd8f;
+  --shadow: 0 14px 30px -22px rgb(70 50 20 / 0.55);
+
+  /* The home page's sprig: one colour per leaf, red at the bottom to violet at the tip. */
+  --rainbow-1: #e4675f;
+  --rainbow-2: #f0954a;
+  --rainbow-3: #f2c94c;
+  --rainbow-4: #93c26b;
+  --rainbow-5: #4db3a2;
+  --rainbow-6: #5d9fd8;
+  --rainbow-7: #8a83d6;
+  --rainbow-8: #c07ccb;
+
+  /* Hand-drawn lines, used as masks so they take any colour. */
+  --squiggle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6 C 14 2.5, 24 8.5, 37 5.5 S 62 2.5, 75 6 S 92 7, 98 4' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+  --rule: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 10' preserveAspectRatio='none'%3E%3Cpath d='M1 5 C 60 2.5, 120 7.5, 200 5 S 340 3, 399 6' fill='none' stroke='%23000' stroke-width='1.3' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+
+  --wide: 64rem;
+  --text: 40rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1c1e18;
+    --card: #24271f;
+    --ink: #ebe3d3;
+    --ink-soft: #b4ab98;
+    --line: rgb(235 227 211 / 0.2);
+    --moss: #a9c58e;
+    --moss-wash: #2b3324;
+    --clay: #e59a7d;
+    --clay-wash: #3a2a22;
+    --ochre: #dfba6a;
+    --ochre-wash: #353020;
+    --leaf: #61794f;
+    --shadow: 0 14px 30px -20px rgb(0 0 0 / 0.7);
+    --rainbow-1: #c85a53;
+    --rainbow-2: #d4823f;
+    --rainbow-3: #d6b143;
+    --rainbow-4: #7aa85a;
+    --rainbow-5: #3f9a8b;
+    --rainbow-6: #4f88bb;
+    --rainbow-7: #756fbb;
+    --rainbow-8: #a669b1;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(42rem 30rem at -10rem -6rem, var(--ochre-wash), transparent 70%),
+    radial-gradient(36rem 28rem at calc(100% + 12rem) 30rem, var(--clay-wash), transparent 70%);
+  background-repeat: no-repeat;
+  color: var(--ink);
+  font-family: Fraunces, Georgia, "Times New Roman", serif;
+  font-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  font-weight: 380;
+  line-height: 1.6;
+  font-variation-settings: "SOFT" 50;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main { flex: 1; }
+
+h1, h2, h3 {
+  font-weight: 540;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  text-wrap: balance;
+}
+
+p { text-wrap: pretty; }
+
+a { color: var(--moss); }
+
+:focus-visible { outline: 2px solid var(--moss); outline-offset: 3px; border-radius: 4px; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---- Header and footer ---- */
+
+.site-header {
+  width: min(100% - 2rem, var(--wide));
+  margin: 0 auto;
+  padding: 1.25rem 0 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem 1.5rem;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+
+.wordmark svg { width: 1.5rem; height: 1.5rem; color: var(--moss); flex: none; }
+
+.site-nav { display: flex; gap: 0.25rem 1.25rem; }
+
+.site-nav a {
+  position: relative;
+  padding: 0.35rem 0.1rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: -0.15rem;
+  right: -0.15rem;
+  bottom: 0;
+  height: 0.5rem;
+  background: var(--moss);
+  -webkit-mask: var(--squiggle) center / 100% 100% no-repeat;
+  mask: var(--squiggle) center / 100% 100% no-repeat;
+  opacity: 0;
+  transform: scaleX(0.3);
+  transform-origin: left center;
+  transition: opacity 0.25s, transform 0.4s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+.site-nav a:hover { color: var(--ink); }
+.site-nav a:hover::after { opacity: 0.6; transform: none; }
+.site-nav a[aria-current="page"] { color: var(--ink); }
+.site-nav a[aria-current="page"]::after { opacity: 1; transform: none; background: var(--clay); }
+
+.site-footer {
+  position: relative;
+  width: min(100% - 2rem, var(--wide));
+  margin: clamp(4rem, 10vw, 7rem) auto 0;
+  padding: 1.5rem 0 2.25rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: var(--line);
+  -webkit-mask: var(--rule) center / 100% 100% no-repeat;
+  mask: var(--rule) center / 100% 100% no-repeat;
+}
+
+.site-footer p { margin: 0; }
+
+/* ---- Home: the hello, the about, and the ways in ---- */
+
+.hero {
+  width: min(100% - 2rem, var(--wide));
+  margin: clamp(1.5rem, 6vw, 4.5rem) auto 0;
+  display: grid;
+  gap: 2rem 3rem;
+  align-items: center;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(3.8rem, 2rem + 8vw, 7.5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+/* The wave waves twice when the page opens, and again on hover. */
+.wave {
+  display: inline-block;
+  margin-left: 0.05em;
+  font-size: 0.85em;
+  transform-origin: 70% 85%;
+  animation: wave 2.2s ease-in-out 0.5s 2;
+}
+
+@media (hover: hover) {
+  .hero h1:hover .wave { animation: wave 2.2s ease-in-out infinite; }
+}
+
+@keyframes wave {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  10% { transform: rotate(16deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+}
+
+.hero-art {
+  position: relative;
+  justify-self: center;
+  width: min(62%, 15rem);
+  aspect-ratio: 1 / 1.1;
+  margin: 0;
+}
+
+@media (min-width: 48rem) {
+  .hero { grid-template-columns: 1.3fr 1fr; }
+  .hero-art { width: min(100%, 23rem); }
+}
+
+.blob {
+  position: absolute;
+  inset: 10% 4% 6% 8%;
+  background: var(--moss-wash);
+  border-radius: 62% 38% 54% 46% / 48% 60% 40% 52%;
+  animation: breathe 24s ease-in-out infinite alternate;
+}
+
+.blob--seed {
+  inset: auto 0 2% auto;
+  width: 34%;
+  aspect-ratio: 1;
+  background: var(--ochre-wash);
+  border-radius: 46% 54% 38% 62% / 55% 44% 56% 45%;
+  animation-duration: 17s;
+  animation-direction: alternate-reverse;
+}
+
+.sprig {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform-origin: 51% 96%;
+  animation: sway 11s ease-in-out infinite alternate;
+}
+
+.sprig .leaves { fill: var(--leaf); stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; }
+.sprig .stem { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; }
+.sprig .seeds { fill: var(--clay); }
+.sprig .leaves use:nth-child(1) { fill: var(--rainbow-1); }
+.sprig .leaves use:nth-child(2) { fill: var(--rainbow-2); }
+.sprig .leaves use:nth-child(3) { fill: var(--rainbow-3); }
+.sprig .leaves use:nth-child(4) { fill: var(--rainbow-4); }
+.sprig .leaves use:nth-child(5) { fill: var(--rainbow-5); }
+.sprig .leaves use:nth-child(6) { fill: var(--rainbow-6); }
+.sprig .leaves use:nth-child(7) { fill: var(--rainbow-7); }
+.sprig .leaves use:nth-child(8) { fill: var(--rainbow-8); }
+
+@keyframes breathe {
+  50% { border-radius: 44% 56% 40% 60% / 58% 42% 58% 42%; }
+  100% { border-radius: 52% 48% 62% 38% / 40% 55% 45% 60%; }
+}
+
+@keyframes sway {
+  from { transform: rotate(-1.6deg); }
+  to { transform: rotate(1.8deg); }
+}
+
+.about {
+  width: min(100% - 2rem, var(--wide));
+  margin: clamp(3rem, 8vw, 5.5rem) auto 0;
+}
+
+.about > * { max-width: var(--text); }
+
+.about h2 { margin: 0 0 0.9rem; font-size: clamp(1.65rem, 1.3rem + 1.3vw, 2.2rem); }
+
+.about p { margin: 0 0 1rem; }
+
+.doors {
+  width: min(100% - 2rem, var(--wide));
+  margin: clamp(3.5rem, 9vw, 6rem) auto 0;
+}
+
+.doors ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15.5rem), 1fr));
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.door {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  height: 100%;
+  padding: 1.4rem 1.5rem 1.35rem;
+  background: var(--wash);
+  border-radius: var(--shape);
+  box-shadow: var(--shadow);
+  color: var(--ink);
+  text-decoration: none;
+  rotate: var(--tilt);
+  transition: rotate 0.45s cubic-bezier(0.3, 0.7, 0.2, 1), translate 0.45s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+.door--substack { --wash: var(--ochre-wash); --tint: var(--ochre); --shape: 34px 52px 30px 46px / 44px 30px 50px 34px; --tilt: -1.2deg; }
+.door--puzzles { --wash: var(--moss-wash); --tint: var(--moss); --shape: 50px 30px 48px 34px / 32px 48px 30px 50px; --tilt: 0.9deg; }
+.door--poetry { --wash: var(--clay-wash); --tint: var(--clay); --shape: 30px 46px 36px 54px / 50px 34px 46px 30px; --tilt: -0.6deg; }
+
+.door svg { width: 3rem; height: 3rem; margin-bottom: 0.5rem; color: var(--tint); }
+.door-title { font-size: 1.6rem; font-weight: 540; line-height: 1.15; font-variation-settings: "SOFT" 100, "WONK" 1; }
+.door-note { color: var(--ink-soft); }
+.door-go { margin-top: auto; padding-top: 0.9rem; color: var(--tint); font-style: italic; }
+.door:focus-visible { outline-color: var(--tint); outline-offset: 5px; border-radius: var(--shape); }
+
+@media (hover: hover) {
+  .door:hover { rotate: 0deg; translate: 0 -4px; }
+}
+
+/* ---- Section pages ---- */
+
+.page-head {
+  width: min(100% - 2rem, var(--text));
+  margin: clamp(2rem, 7vw, 4.5rem) auto clamp(2rem, 5vw, 3rem);
+}
+
+.page-head h1 {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  font-size: clamp(2.7rem, 1.8rem + 4vw, 4.3rem);
+  line-height: 1;
+}
+
+.page-head h1::after {
+  content: "";
+  position: absolute;
+  left: -0.05em;
+  right: -0.15em;
+  bottom: -0.22em;
+  height: 0.24em;
+  background: var(--clay);
+  -webkit-mask: var(--squiggle) center / 100% 100% no-repeat;
+  mask: var(--squiggle) center / 100% 100% no-repeat;
+}
+
+.page-note { margin: 1.25rem 0 0; color: var(--ink-soft); font-size: 1.2rem; font-style: italic; }
+
+.section { width: min(100% - 2rem, var(--text)); margin: 0 auto; }
+
+/* Lists of posts and poems. The empty note shows until the list has an item. */
+.entries { margin: 0; padding: 0; list-style: none; }
+.entries:not(:has(li)) { display: none; }
+.entries:has(li) + .empty { display: none; }
+
+.entries li { position: relative; }
+
+.entries li + li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: var(--line);
+  -webkit-mask: var(--rule) center / 100% 100% no-repeat;
+  mask: var(--rule) center / 100% 100% no-repeat;
+}
+
+.entries a { display: block; padding: 1.3rem 0 1.2rem; color: inherit; text-decoration: none; }
+
+.entries time, .post-date {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.07em;
+}
+
+.entry-title {
+  display: block;
+  margin: 0.15rem 0 0.3rem;
+  font-size: 1.5rem;
+  font-weight: 540;
+  line-height: 1.2;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  transition: color 0.2s;
+}
+
+.entries--poems .entry-title { font-style: italic; font-weight: 470; }
+.entry-summary { display: block; color: var(--ink-soft); }
+.entries--poems .entry-summary { font-style: italic; }
+.entries a:hover .entry-title { color: var(--moss); }
+
+.empty { padding: 1.5rem 1rem 0; color: var(--ink-soft); font-style: italic; text-align: center; }
+.empty svg { display: block; width: 8rem; height: auto; margin: 0 auto 0.75rem; color: var(--moss); overflow: visible; }
+.empty p { margin: 0; }
+
+/* Puzzles */
+.games { display: grid; gap: 1.5rem; margin: 0; padding: 0; list-style: none; }
+
+.game {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1.25rem;
+  align-items: start;
+  padding: 1.4rem 1.5rem 1.4rem 1.4rem;
+  background: var(--card);
+  border-radius: var(--shape);
+  box-shadow: var(--shadow);
+  rotate: var(--tilt);
+  transition: rotate 0.45s cubic-bezier(0.3, 0.7, 0.2, 1), translate 0.45s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+.game:nth-child(3n + 1) { --shape: 30px 48px 34px 44px / 42px 30px 46px 32px; --tilt: -0.5deg; }
+.game:nth-child(3n + 2) { --shape: 46px 30px 44px 36px / 30px 44px 32px 48px; --tilt: 0.4deg; }
+.game:nth-child(3n) { --shape: 34px 44px 30px 50px / 48px 34px 42px 30px; --tilt: -0.3deg; }
+
+.game img {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 22%;
+  box-shadow: 0 8px 16px -10px rgb(40 30 10 / 0.6);
+  rotate: -3deg;
+}
+
+.game:nth-child(even) img { rotate: 2.5deg; }
+
+.game h2 { margin: 0.1rem 0 0; font-size: 1.65rem; }
+.game h2 a { color: inherit; text-decoration: none; }
+.game h2 a::after { content: ""; position: absolute; inset: 0; border-radius: var(--shape); }
+.game h2 a:focus-visible { outline: none; }
+.game:has(a:focus-visible) { outline: 2px solid var(--moss); outline-offset: 5px; }
+.game p { margin: 0.35rem 0 0; }
+.game .where { margin-top: 0.7rem; color: var(--moss); font-size: 0.98rem; font-style: italic; }
+
+@media (hover: hover) {
+  .game:hover { rotate: 0deg; translate: 0 -3px; }
+  .game:hover h2 { color: var(--moss); }
+}
+
+@media (max-width: 26rem) {
+  .game { grid-template-columns: 1fr; padding: 1.25rem; }
+  .game img { width: 3.75rem; height: 3.75rem; }
+}
+
+/* ---- A post and a poem ---- */
+
+.post-head { width: min(100% - 2rem, var(--text)); margin: clamp(2rem, 7vw, 4.5rem) auto 2rem; }
+.post-head h1 { margin: 0.35rem 0 0; font-size: clamp(2.3rem, 1.6rem + 3vw, 3.5rem); line-height: 1.05; }
+
+.prose { width: min(100% - 2rem, var(--text)); margin: 0 auto; }
+.prose p, .prose ul, .prose ol { margin: 0 0 1.2em; }
+.prose h2 { margin: 2em 0 0.6em; font-size: 1.65rem; }
+.prose blockquote {
+  margin: 1.6em 0;
+  padding: 0.1em 0 0.1em 1.25em;
+  border-left: 3px solid var(--moss-wash);
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.prose code { padding: 0.05em 0.3em; background: var(--moss-wash); border-radius: 6px; font-size: 0.88em; }
+.prose img { max-width: 100%; height: auto; border-radius: 22px 30px 24px 28px / 28px 22px 30px 24px; }
+
+.prose a, .about a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in srgb, var(--moss) 50%, transparent);
+}
+
+.prose a:hover, .about a:hover { text-decoration-style: wavy; text-decoration-color: var(--moss); }
+
+.back { width: min(100% - 2rem, var(--text)); margin: 3rem auto 0; font-style: italic; }
+.back a { text-decoration: none; }
+.back a:hover { text-decoration: underline wavy; text-underline-offset: 0.2em; }
+
+.poem-page { width: min(100% - 2rem, 34rem); margin: clamp(2.5rem, 8vw, 5rem) auto 0; }
+.poem-page h1 {
+  margin: 0 0 2.25rem;
+  font-size: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  font-style: italic;
+  font-weight: 460;
+}
+
+/* Each <p> is a stanza; its line breaks are kept just as written. */
+.poem p { margin: 0 0 1.6em; font-size: 1.15rem; line-height: 1.75; white-space: pre-line; }
+.poem-page .post-date { margin-top: 2.5rem; }
+.poem-page .back { width: auto; }
+
+/* ---- Not found ---- */
+
+.lost { width: min(100% - 2rem, var(--text)); margin: clamp(3rem, 10vw, 6rem) auto 0; text-align: center; }
+.lost h1 { margin: 0 0 1rem; font-size: clamp(2.3rem, 1.6rem + 3.5vw, 3.6rem); }
+.lost svg { display: block; width: 9rem; height: auto; margin: 0 auto 1.5rem; color: var(--moss); overflow: visible; }
+.lost p { margin: 0; color: var(--ink-soft); font-size: 1.2rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
