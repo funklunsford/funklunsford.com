@@ -2,7 +2,7 @@
 
 The owner's own domain, served by GitHub Pages from this repo (`main`, at its root; `CNAME` names the domain).
 
-- **/** — the home page: a hello, and the way into each section (the about section is commented out until it has words).
+- **/** — the home page: a hello and the rainbow sprig (the about section is commented out until it has words). Each section is reached from the top bar, where its icon sits under its name.
 - **/substack/**, **/puzzles/**, **/poetry/** — the three sections. Puzzles links to each game through its short link below.
 - **/strokes** forwards to https://strokes.fun/.
 - **/mountweazel** forwards to https://funklunsford.github.io/mountweazel/.
