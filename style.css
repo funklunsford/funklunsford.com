@@ -109,18 +109,36 @@ a { color: var(--moss); }
 
 /* ---- Header ---- */
 
+/* Home at the left, the sections centered. */
 .site-header {
   width: min(100% - 2rem, var(--wide));
   margin: 0 auto;
   padding: 1.25rem 0 0.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 0.25rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
 }
 
+.home {
+  justify-self: start;
+  padding: 0.2rem 0.1rem;
+  color: var(--ink-soft);
+  transition: color 0.2s;
+}
+
+.home svg { display: block; width: 1.75rem; height: 1.75rem; transition: transform 0.45s cubic-bezier(0.3, 0.7, 0.2, 1); }
+.home:hover, .home[aria-current="page"] { color: var(--ink); }
+.home:hover svg { transform: rotate(-8deg) scale(1.08); }
+
 .site-nav { display: flex; gap: 0.25rem 1.6rem; }
+
+@media (max-width: 26rem) {
+  .site-nav { gap: 0.25rem 1.1rem; }
+}
+
+@media (max-width: 22rem) {
+  .site-nav { gap: 0.25rem 0.85rem; }
+}
 
 .site-nav a {
   display: flex;
@@ -197,6 +215,14 @@ a { color: var(--moss); }
 
 @media (hover: hover) {
   .hero h1:hover .wave { animation: wave 2.2s ease-in-out infinite; }
+}
+
+/* The about blurb under the hello. */
+.blurb {
+  max-width: 30rem;
+  margin: 1.1rem 0 0;
+  font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.3rem);
+  line-height: 1.55;
 }
 
 @keyframes wave {
