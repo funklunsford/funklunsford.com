@@ -86,7 +86,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-main { flex: 1; }
+main { flex: 1; padding-bottom: clamp(3rem, 8vw, 5rem); }
 
 h1, h2, h3 {
   font-weight: 540;
@@ -107,7 +107,7 @@ a { color: var(--moss); }
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-/* ---- Header and footer ---- */
+/* ---- Header ---- */
 
 .site-header {
   width: min(100% - 2rem, var(--wide));
@@ -116,25 +116,9 @@ a { color: var(--moss); }
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 0.25rem 1.5rem;
 }
-
-.wordmark {
-  display: inline-flex;
-  padding-top: 0.2rem;
-  align-items: center;
-  gap: 0.4rem;
-  color: var(--ink);
-  text-decoration: none;
-  font-size: 1.3rem;
-  font-style: italic;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  font-variation-settings: "SOFT" 100, "WONK" 1;
-}
-
-.wordmark svg { width: 1.5rem; height: 1.5rem; color: var(--moss); flex: none; }
 
 .site-nav { display: flex; gap: 0.25rem 1.6rem; }
 
@@ -183,29 +167,6 @@ a { color: var(--moss); }
 .site-nav a:hover svg { transform: rotate(-10deg) scale(1.08); }
 .site-nav a[aria-current="page"] { color: var(--ink); }
 .site-nav a[aria-current="page"] span::after { opacity: 1; transform: none; background: var(--clay); }
-
-.site-footer {
-  position: relative;
-  width: min(100% - 2rem, var(--wide));
-  margin: clamp(4rem, 10vw, 7rem) auto 0;
-  padding: 1.5rem 0 2.25rem;
-  color: var(--ink-soft);
-  font-size: 0.95rem;
-}
-
-.site-footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 10px;
-  background: var(--line);
-  -webkit-mask: var(--rule) center / 100% 100% no-repeat;
-  mask: var(--rule) center / 100% 100% no-repeat;
-}
-
-.site-footer p { margin: 0; }
 
 /* ---- Home: the hello, the about, and the ways in ---- */
 
