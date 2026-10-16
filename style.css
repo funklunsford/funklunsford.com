@@ -217,16 +217,12 @@ a { color: var(--moss); }
   .hero h1:hover .wave { animation: wave 2.2s ease-in-out infinite; }
 }
 
-/* The about blurb under the hello, on phones only. */
+/* The about blurb under the hello. */
 .blurb {
   max-width: 30rem;
   margin: 1.1rem 0 0;
   font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.3rem);
   line-height: 1.55;
-}
-
-@media (min-width: 48rem) {
-  .blurb { display: none; }
 }
 
 @keyframes wave {
