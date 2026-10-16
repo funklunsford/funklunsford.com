@@ -17,6 +17,16 @@
   --leaf: #a9bd8f;
   --shadow: 0 14px 30px -22px rgb(70 50 20 / 0.55);
 
+  /* The home page's sprig: one colour per leaf, red at the bottom to violet at the tip. */
+  --rainbow-1: #e4675f;
+  --rainbow-2: #f0954a;
+  --rainbow-3: #f2c94c;
+  --rainbow-4: #93c26b;
+  --rainbow-5: #4db3a2;
+  --rainbow-6: #5d9fd8;
+  --rainbow-7: #8a83d6;
+  --rainbow-8: #c07ccb;
+
   /* Hand-drawn lines, used as masks so they take any colour. */
   --squiggle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6 C 14 2.5, 24 8.5, 37 5.5 S 62 2.5, 75 6 S 92 7, 98 4' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
   --rule: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 10' preserveAspectRatio='none'%3E%3Cpath d='M1 5 C 60 2.5, 120 7.5, 200 5 S 340 3, 399 6' fill='none' stroke='%23000' stroke-width='1.3' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
@@ -40,6 +50,14 @@
     --ochre-wash: #353020;
     --leaf: #61794f;
     --shadow: 0 14px 30px -20px rgb(0 0 0 / 0.7);
+    --rainbow-1: #c85a53;
+    --rainbow-2: #d4823f;
+    --rainbow-3: #d6b143;
+    --rainbow-4: #7aa85a;
+    --rainbow-5: #3f9a8b;
+    --rainbow-6: #4f88bb;
+    --rainbow-7: #756fbb;
+    --rainbow-8: #a669b1;
   }
 }
 
@@ -182,20 +200,33 @@ a { color: var(--moss); }
 }
 
 .hero h1 {
-  margin: 0 0 1.25rem;
-  font-size: clamp(2.9rem, 1.6rem + 5.5vw, 5.4rem);
+  margin: 0;
+  font-size: clamp(3.8rem, 2rem + 8vw, 7.5rem);
   font-weight: 500;
-  line-height: 0.98;
+  line-height: 1;
   letter-spacing: -0.03em;
 }
 
-.hero h1 em { font-style: italic; font-weight: 440; color: var(--moss); }
+/* The wave waves twice when the page opens, and again on hover. */
+.wave {
+  display: inline-block;
+  margin-left: 0.05em;
+  font-size: 0.85em;
+  transform-origin: 70% 85%;
+  animation: wave 2.2s ease-in-out 0.5s 2;
+}
 
-.lede {
-  max-width: 30rem;
-  margin: 0;
-  font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.45rem);
-  line-height: 1.5;
+@media (hover: hover) {
+  .hero h1:hover .wave { animation: wave 2.2s ease-in-out infinite; }
+}
+
+@keyframes wave {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  10% { transform: rotate(16deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
 }
 
 .hero-art {
@@ -242,6 +273,14 @@ a { color: var(--moss); }
 .sprig .leaves { fill: var(--leaf); stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; }
 .sprig .stem { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; }
 .sprig .seeds { fill: var(--clay); }
+.sprig .leaves use:nth-child(1) { fill: var(--rainbow-1); }
+.sprig .leaves use:nth-child(2) { fill: var(--rainbow-2); }
+.sprig .leaves use:nth-child(3) { fill: var(--rainbow-3); }
+.sprig .leaves use:nth-child(4) { fill: var(--rainbow-4); }
+.sprig .leaves use:nth-child(5) { fill: var(--rainbow-5); }
+.sprig .leaves use:nth-child(6) { fill: var(--rainbow-6); }
+.sprig .leaves use:nth-child(7) { fill: var(--rainbow-7); }
+.sprig .leaves use:nth-child(8) { fill: var(--rainbow-8); }
 
 @keyframes breathe {
   50% { border-radius: 44% 56% 40% 60% / 58% 42% 58% 42%; }
@@ -263,30 +302,6 @@ a { color: var(--moss); }
 .about h2, .doors h2 { margin: 0 0 0.9rem; font-size: clamp(1.65rem, 1.3rem + 1.3vw, 2.2rem); }
 
 .about p { margin: 0 0 1rem; }
-
-/* Words still to be written: remove the class once they are. */
-.placeholder {
-  position: relative;
-  padding: 1.6rem 1.2rem 1rem;
-  border: 1.5px dashed color-mix(in srgb, var(--clay) 55%, transparent);
-  border-radius: 18px 28px 20px 26px / 24px 18px 28px 20px;
-  color: var(--ink-soft);
-  font-style: italic;
-}
-
-.placeholder::before {
-  content: "Draft";
-  position: absolute;
-  top: -0.7rem;
-  left: 1rem;
-  padding: 0 0.5rem;
-  background: var(--paper);
-  color: var(--clay);
-  font-size: 0.85rem;
-  font-style: normal;
-  font-variant-caps: all-small-caps;
-  letter-spacing: 0.08em;
-}
 
 .doors {
   width: min(100% - 2rem, var(--wide));
@@ -317,7 +332,7 @@ a { color: var(--moss); }
   transition: rotate 0.45s cubic-bezier(0.3, 0.7, 0.2, 1), translate 0.45s cubic-bezier(0.3, 0.7, 0.2, 1);
 }
 
-.door--blog { --wash: var(--ochre-wash); --tint: var(--ochre); --shape: 34px 52px 30px 46px / 44px 30px 50px 34px; --tilt: -1.2deg; }
+.door--substack { --wash: var(--ochre-wash); --tint: var(--ochre); --shape: 34px 52px 30px 46px / 44px 30px 50px 34px; --tilt: -1.2deg; }
 .door--puzzles { --wash: var(--moss-wash); --tint: var(--moss); --shape: 50px 30px 48px 34px / 32px 48px 30px 50px; --tilt: 0.9deg; }
 .door--poetry { --wash: var(--clay-wash); --tint: var(--clay); --shape: 30px 46px 36px 54px / 50px 34px 46px 30px; --tilt: -0.6deg; }
 

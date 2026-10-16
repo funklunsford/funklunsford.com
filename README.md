@@ -2,8 +2,8 @@
 
 The owner's own domain, served by GitHub Pages from this repo (`main`, at its root; `CNAME` names the domain).
 
-- **/** — the home page: a hello, a little about me, and the way into each section.
-- **/blog/**, **/puzzles/**, **/poetry/** — the three sections. Puzzles links to each game through its short link below.
+- **/** — the home page: a hello, and the way into each section (the about section is commented out until it has words).
+- **/substack/**, **/puzzles/**, **/poetry/** — the three sections. Puzzles links to each game through its short link below.
 - **/strokes** forwards to https://strokes.fun/.
 - **/mountweazel** forwards to https://funklunsford.github.io/mountweazel/.
 - **/puzzleplaylist** forwards to https://funklunsford.github.io/playlist/ (the Puzzle Playlist's home; there's no strokes.fun/playlist).
@@ -18,8 +18,8 @@ link the same way (and `/playlist` as `/puzzleplaylist`).
 Plain HTML, no build step: every page links `/style.css` (warm paper and earth tones, the Fraunces font from Google
 Fonts, hand-drawn lines and loose shapes) and repeats the same header. Light and dark follow the device.
 
-- **A blog post** lives at `blog/<slug>/index.html`. Copy `templates/post.html` there, change the title, description,
-  date and words, delete its `robots` line, and add the post to the top of the list in `blog/index.html` (the
+- **A post** lives at `substack/<slug>/index.html`. Copy `templates/post.html` there, change the title, description,
+  date and words, delete its `robots` line, and add the post to the top of the list in `substack/index.html` (the
   comment there shows the shape).
 - **A poem** lives at `poetry/<slug>/index.html`, from `templates/poem.html` the same way. Each `<p>` is a stanza and
   its line breaks are kept as written.
