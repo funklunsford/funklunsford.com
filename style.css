@@ -299,7 +299,7 @@ a { color: var(--moss); }
 
 .about > * { max-width: var(--text); }
 
-.about h2, .doors h2 { margin: 0 0 0.9rem; font-size: clamp(1.65rem, 1.3rem + 1.3vw, 2.2rem); }
+.about h2 { margin: 0 0 0.9rem; font-size: clamp(1.65rem, 1.3rem + 1.3vw, 2.2rem); }
 
 .about p { margin: 0 0 1rem; }
 
